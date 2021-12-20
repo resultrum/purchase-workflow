@@ -9,7 +9,7 @@ from .tier_validation_tester import TierValidationTester
 
 
 @tagged("post_install", "-at_install")
-class TestPurchaseTierValidation(common.SavepointCase):
+class TestPurchaseTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseTierValidation, cls).setUpClass()
@@ -56,7 +56,7 @@ class TestPurchaseTierValidation(common.SavepointCase):
     @classmethod
     def tearDownClass(cls):
         teardown_test_model(cls.env, [TierValidationTester])
-        super(TestPurchaseTierValidation, cls).tearDownClass()
+        return super(TestPurchaseTierValidation, cls).tearDownClass()
 
     def test_01_tier_definition_models(self):
         """When the user can validate all future reviews, it is not needed
